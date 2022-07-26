@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['login');
+        
+    }
+
     public function index(Request $request)
     {
         //  echo  request()->session()->get('user_id', '');

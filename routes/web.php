@@ -31,7 +31,7 @@ Route::get('/user/signup',[UserController::class, 'signup'])->name('user.signup'
 
 Route::post('/user/store', [UserController::class,'store'])->name('user.store');
 Route::post('/user/login', [UserController::class,'login'])->name('user.login');
-Route::get('/user/home', [UserController::class,'home'])->name('user.home');
+Route::get('/user/home', [UserController::class,'home'])->name('user.home')->middleware('login');
 Route::get('/user/logout', [UserController::class,'logout'])->name('user.logout');
-Route::get('/user/passwordform', [UserController::class,'passwordform'])->name('user.passwordform');
+Route::get('/user/passwordform', [UserController::class,'passwordform'])->name('user.passwordform')->middleware('login');
 Route::post('/user/resetpassword', [UserController::class,'resetpassword'])->name('user.resetpassword');
