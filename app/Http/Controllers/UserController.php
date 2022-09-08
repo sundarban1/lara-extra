@@ -100,7 +100,7 @@ class UserController extends Controller
     }
 
     public function logout(){
-       Session::flush();
+       Session::flush();//it destroy session
        return redirect()->route('user.signup');
     }
 
@@ -110,6 +110,24 @@ class UserController extends Controller
     }
 
     public function resetpassword(Request $request){
+
+
+     $userId= Session::get('user_id');
+     $user =Users::find($userId);
+      $request ->validate([
+       'password' => 'required|min:8',
+       'confirm_password' => 'same:password',
+      ]);
+      $user ->password = Hash::make($request->password);
+      $user->save();
+      return view('users.password_form', [
+        'msg'=>'password changed successfully .','user.resetpassword'
+
+      ]);
+
+    
+
+
 
         //validate min length 6
         // password and cpassword must be same
